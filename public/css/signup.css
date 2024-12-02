@@ -1,0 +1,137 @@
+/* Menghilangkan margin dan padding default pada semua elemen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Menghilangkan margin dan padding pada body dan html */
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Menghindari scroll horizontal */
+    overflow-y: hidden; /* Menghindari scroll vertikal */
+}
+
+/* Menjamin container-fluid menggunakan lebar penuh tanpa padding kiri dan kanan */
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Styling untuk bagian signup dan login */
+#auth-section {
+    padding: 80px calc(10vw) 80px calc(10vw); /* Padding dinamis berdasarkan lebar viewport */
+    text-align: center;
+    height: 100vh; /* Membuat area sign-up memenuhi tinggi layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling untuk card container */
+.card-container {
+    perspective: 1000px; /* Menambahkan efek perspektif untuk flip */
+}
+
+/* Styling untuk form sign up dan login */
+.cards {
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: #ffc8c8;
+    box-shadow: 5px 5px black;
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* Untuk menjaga dimensi 3D */
+}
+
+/* Efek flip */
+.cards.flip {
+    transform: rotateY(180deg);
+}
+
+/* Styling untuk tombol sign up */
+.neobtn {
+    background-color: #f79561;
+    border: 3px solid black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    box-shadow: 3px 3px black;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.neobtn:hover {
+    background-color: #e67e22;
+}
+
+/* Styling untuk input form */
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #f79561;
+    outline: none;
+}
+
+/* Styling untuk teks dan link */
+p {
+    font-size: 1rem;
+    color: #555;
+}
+
+a {
+    color: #f79561;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Styling untuk gambar hero */
+.hero-img {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100vh; /* Membuat gambar hero memenuhi seluruh tinggi viewport */
+    max-width: 100%;
+}
+
+/* Media Query untuk perangkat mobile */
+@media (max-width: 767px) {
+    #auth-section {
+        padding: 60px 5vw; /* Padding lebih kecil di layar kecil */
+    }
+
+    .cards {
+        margin-bottom: 20px; /* Kurangi jarak bawah */
+        width: 100%; /* Form memenuhi lebar layar */
+        margin-left: 0; /* Menghilangkan margin kiri */
+        margin-right: 0; /* Menghilangkan margin kanan */
+    }
+
+    .neobtn {
+        width: 100%; /* Tombol full-width di perangkat kecil */
+        padding: 15px;
+    }
+
+    /* Kolom gambar hilang pada perangkat mobile */
+    .d-none {
+        display: none !important;
+    }
+
+    /* Pastikan gambar hero mengisi seluruh layar di perangkat kecil */
+    .hero-img {
+        height: 50vh;
+    }
+}

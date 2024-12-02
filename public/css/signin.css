@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#auth-section {
+    padding: 80px calc(10vw) 80px calc(10vw);
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    perspective: 1000px;
+}
+
+.cards {
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: #c8e1ff;
+    box-shadow: 5px 5px black;
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.cards.flip {
+    transform: rotateY(180deg);
+}
+
+.neobtn {
+    background-color: #f79561;
+    border: 3px solid black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    box-shadow: 3px 3px black;
+    transition: background-color 0.3s ease;
+}
+
+.neobtn:hover {
+    background-color: #e67e22;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #f79561;
+    outline: none;
+}
+
+p {
+    font-size: 1rem;
+    color: #555;
+}
+
+a {
+    color: #f79561;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.hero-img {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100vh;
+    max-width: 100%;
+}
+
+@media (max-width: 767px) {
+    #auth-section {
+        padding: 60px 5vw;
+    }
+
+    .cards {
+        margin-bottom: 20px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .neobtn {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
+    .hero-img {
+        height: 50vh;
+    }
+}
