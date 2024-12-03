@@ -19,14 +19,15 @@
                     <!-- Form Login -->
                     <div class="cards login-form">
                         <h2 class="mb-4">Login to Your Account</h2>
-                        <form action="#" method="POST">
+                        <form action="{{ route('auth.login') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="login-email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="login-email" name="login-email" required>
+                                <input type="email" class="form-control" id="login-email" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="login-password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="login-password" name="login-password" required>
+                                <input type="password" class="form-control" id="login-password" name="password" required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="neobtn">Login</button>

@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link list" href="#">Explore</a>
+                    <a class="nav-link list" href="/home">Explore</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link list" href="#">Contact</a>
@@ -19,10 +19,10 @@
                     <span class="batas">|</span>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link list" href="/signin">Login</a>
+                    <a class="nav-link list" href="{{ route('auth.signin') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link list" href="/signup">
+                    <a class="nav-link list" href="{{ route('auth.signup') }}">
                         <button class="neobtn">Sign Up For Free </button>
                     </a>
                 </li>

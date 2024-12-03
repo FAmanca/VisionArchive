@@ -1,0 +1,88 @@
+/* Menghilangkan margin dan padding default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling untuk body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    overflow-x: hidden;  /* Menghindari scroll horizontal */
+}
+
+/* Styling untuk card tambah gambar */
+.neobrutalism-card {
+    background-color: #fff;
+    border: 3px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect untuk card */
+.neobrutalism-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk judul */
+.neobrutalism-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Styling untuk input form */
+.neobrutalism-input-field {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus effect untuk input field */
+.neobrutalism-input-field:focus {
+    border-color: #f79561;
+    outline: none;
+}
+
+/* Styling untuk tombol */
+.neobrutalism-neobtn {
+    background-color: #f79561;
+    border: 3px solid black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 18px;
+    box-shadow: 3px 3px black;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect untuk tombol */
+.neobrutalism-neobtn:hover {
+    background-color: #e67e22;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .neobrutalism-card {
+        padding: 20px; /* Padding lebih kecil di perangkat mobile */
+    }
+
+    .neobrutalism-input-field {
+        font-size: 0.9rem; /* Ukuran font input sedikit lebih kecil di perangkat kecil */
+        padding: 12px;
+    }
+
+    .neobrutalism-neobtn {
+        width: 100%; /* Tombol full-width di perangkat kecil */
+        padding: 15px;
+    }
+}

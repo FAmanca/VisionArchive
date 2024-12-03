@@ -7,7 +7,7 @@
             <div class="col-lg-6 col-md-12 text-center text-md-start">
                 <h1 class="display-4 fw-bolder">Welcome to Vision Archive</h1>
                 <p class="lead mb-4">Explore a wide collection of high-quality images curated for your creative projects.</p>
-                <a href="#" class="btn btn-lg neobtn">Start Exploring</a>
+                <a href="/home" class="btn btn-lg neobtn">Start Exploring</a>
             </div>
             <div class="col-lg-6 col-md-12 text-center">
                 <img src="{{ asset('images/footage/1.png') }}" alt="Landing Image" class="img-fluid landing-img">

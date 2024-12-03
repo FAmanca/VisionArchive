@@ -18,7 +18,8 @@
                     <!-- Form Sign Up -->
                     <div class="cards sign-up-form">
                         <h2 class="mb-4">Create an Account</h2>
-                        <form action="#" method="POST">
+                        <form action="{{ route('auth.register') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
@@ -33,13 +34,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="confirm-password" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+                                <input type="password" class="form-control" id="confirm-password" name="password_confirmation" required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="neobtn">Sign Up</button>
                             </div>
                         </form>
-                        <p class="mt-3 text-center">Already have an account? <a href="/signin" class="toggle-form">Login here</a></p>
+                        <p class="mt-3 text-center">Already have an account? <a href="{{ route('auth.signin') }}" class="toggle-form">Login here</a></p>
                     </div>
                 </div>
             </div>

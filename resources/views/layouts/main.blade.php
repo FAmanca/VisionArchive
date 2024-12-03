@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/create.css') }}"> --}}
 
 </head>
 
