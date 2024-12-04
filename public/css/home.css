@@ -24,13 +24,19 @@ body {
     border: 5px solid black;
     border-radius: 8px;
     box-shadow: 8px 8px black;
-    background-color: #ffc6c6;
     overflow: hidden;
+    position: relative;
+    background-color: #ffc6c6;
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+.card img:hover {
+    filter: brightness(0.8);
+    -webkit-filter: brightness(0.8);
 }
 
 .card-img-top {
@@ -40,25 +46,104 @@ body {
     border-bottom: 5px solid black;
 }
 
+/* Card Body Styling */
+.card-body {
+    padding: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px;
+    align-items: center;
+    border-top: 2px solid #000; /* Border above buttons */
+}
+
+/* Card Title Styling */
 .card-title {
     font-size: 1.2rem;
     color: #000;
 }
 
+/* Button Styling */
+.button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+    color: #333;
+    font-size: 1rem; /* Adjust font size for better proportion */
+}
+
+.btn i {
+    font-size: 1.2rem; /* Adjust icon size */
+    transition: transform 0.3s ease;
+}
+
+.btn-like:hover i,
+.btn-download:hover i,
+.btn-share:hover i {
+    transform: scale(1.2); /* Enlarge icon on hover */
+}
+
+/* Background Image */
 .bg-image {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;              /* Lebar penuh layar */
-    height: 100vh;             /* Tinggi penuh viewport */
-    object-fit: cover;         /* Menjaga proporsi gambar */
+    width: 100vw; /* Full width of the screen */
+    height: 100vh; /* Full height of the screen */
+    object-fit: cover;
     z-index: -1;
-    opacity: 0.1;              /* Letakkan di bawah konten lain */
+    opacity: 0.1; /* Behind all content */
 }
 
+/* Pagination Styling */
+.pagination {
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination .page-item .page-link {
+    border: 1px solid #000;
+    color: #000;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Filter and Sort Buttons */
+button {
+    margin: 0 5px;
+}
+
+/* Modal Styling */
+.modal-body img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
 
 /* Responsive Grid Adjustments */
 @media (max-width: 768px) {
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        gap: 5px; /* Smaller gap between buttons */
+    }
+
+    .btn {
+        padding: 5px 8px; /* Smaller padding for mobile */
+    }
+
+    .btn i {
+        font-size: 1rem; /* Adjust icon size for mobile */
+    }
+
     .card {
         margin-bottom: 20px;
     }
@@ -67,3 +152,4 @@ body {
         height: 150px;
     }
 }
+

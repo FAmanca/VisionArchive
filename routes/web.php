@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,9 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
 
-Route::get('/create', function () {
-    return view('create');
-});
-
+// Route Auth
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::get('signup', function () {
         return view('signup');
@@ -35,7 +34,16 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     })->name('signin');
     Route::post('register', [AuthController::class,'register'])->name('register');
     Route::post('login', [AuthController::class,'login'])->name('login');
+    Route::post('logout', [AuthController::class,'logout'])->name('logout');
 });
+
+// Route Bikin Gambar
+Route::group(['prefix'=> 'image','as'=> 'image.'], function () {
+    Route::get('create', [ImageController::class,'create'])->name('create');
+    Route::post('store', [ImageController::class,'store'])->name('store');
+    Route::post('newalbum', [AlbumController::class,'store'])->name('newalbum');
+});
+
 
 
 
