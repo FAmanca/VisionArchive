@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.landingmain')
 
 @section('container')
     <!-- Landing Page Section -->
@@ -16,28 +16,30 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="container my-5">
-        <div class="row text-center g-5"> <!-- Gap set to g-5 for more spacing -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 cards">
-                <div class="feature-box p-4">
-                    <h3>High-Quality Images</h3>
-                    <p>Our collection is curated from professional photographers worldwide.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 cards bg-blue">
-                <div class="feature-box p-4">
-                    <h3>Easy Search</h3>
-                    <p>Find images effortlessly using our powerful search functionality.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 cards bg-green">
-                <div class="feature-box p-4">
-                    <h3>Free to Use</h3>
-                    <p>All images are free to use for personal and commercial projects.</p>
-                </div>
+    <!-- Features Section -->
+<section id="features" class="container my-5">
+    <div class="row text-center g-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="feature-box p-4 cards">
+                <h3>High-Quality Images</h3>
+                <p>Our collection is curated from professional photographers worldwide.</p>
             </div>
         </div>
-    </section>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="feature-box p-4 cards bg-blue">
+                <h3>Easy Search</h3>
+                <p>Find images effortlessly using our powerful search functionality.</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="feature-box p-4 cards bg-green">
+                <h3>Free to Use</h3>
+                <p>All images are free to use for personal and commercial projects.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- Footer Section -->
     <footer class="bg-dark text-white text-center py-4">
