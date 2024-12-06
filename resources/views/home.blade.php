@@ -31,11 +31,12 @@
         {{-- New Arrivals Section --}}
         <h2 class="mb-4">New Arrivals</h2>
         <div class="row g-4 justify-content-center">
-            @for ($i = 0; $i < 8; $i++)
+            @foreach ($newimages as $newimage)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <a href="#" class="card-link">
                         <div class="card">
-                            <img src="{{ asset('images/footage/1.png') }}" class="card-img-top" alt="Image">
+                        
+                            <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
 
                             {{-- Card Buttons --}}
                             <div class="card-body text-center">
@@ -46,50 +47,9 @@
                         </div>
                     </a>
                 </div>
-            @endfor
+            @endforeach
         </div>
 
-        {{-- Trending Images Section --}}
-        <h2 class="mb-4 mt-5">Trending Images</h2>
-        <div class="row g-4 justify-content-center">
-            @for ($i = 0; $i < 8; $i++)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <a href="#" class="card-link">
-                        <div class="card">
-                            <img src="{{ asset('images/footage/2.png') }}" class="card-img-top" alt="Image">
-
-                            {{-- Card Buttons --}}
-                            <div class="card-body text-center">
-                                <button class="btn btn-like"><i class="fa fa-heart"></i></button>
-                                <button class="btn btn-download"><i class="fa fa-download"></i></button>
-                                <button class="btn btn-share"><i class="fa fa-share-alt"></i></button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            @endfor
-        </div>
-
-        {{-- Random Images Section --}}
-        <h2 class="mb-4 mt-5">Random Images</h2>
-        <div class="row g-4 justify-content-center">
-            @for ($i = 0; $i < 8; $i++)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <a href="#" class="card-link">
-                        <div class="card">
-                            <img src="{{ asset('images/footage/3.png') }}" class="card-img-top" alt="Image">
-
-                            {{-- Card Buttons --}}
-                            <div class="card-body text-center">
-                                <button class="btn btn-like"><i class="fa fa-heart"></i></button>
-                                <button class="btn btn-download"><i class="fa fa-download"></i></button>
-                                <button class="btn btn-share"><i class="fa fa-share-alt"></i></button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            @endfor
-        </div>
 
         {{-- Pagination (Dummy) --}}
         <div class="row justify-content-center mt-5">

@@ -12,7 +12,7 @@ class ImageController extends Controller
 {
     public function create()
     {
-        $albums = Album::where('UserID', Auth::user()->id)->get();
+        $albums = Auth::user()->albums;
         return view("create", [
             "albums" => $albums
         ]);
@@ -30,10 +30,11 @@ class ImageController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('public/images');
+            $path = $request->file('foto')->store('images', 'public');
         } else {
             return back()->with('error', 'Foto tidak ditemukan');
         }
+
 
         $image = new Image();
         $image->judul_foto = $request->judul_foto;
@@ -46,4 +47,15 @@ class ImageController extends Controller
 
         return redirect()->route('home')->with('success', 'Foto berhasil diunggah!');
     }
+
+    public function delete(Image $image)
+{
+
+    if ($image) {
+        $image->delete();
+        return redirect()->route('profile')->with('success', 'Image deleted successfully');
+    }
+
+    return redirect()->route('profile')->with('error', 'Image not found');
+}
 }

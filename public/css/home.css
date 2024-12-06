@@ -17,6 +17,15 @@ body {
     border: 4px solid black;
     border-radius: 5px;
     box-shadow: 5px 5px black;
+    animation: all ease-in-out 0.5s;
+    -webkit-animation: all ease-in-out 0.5s;
+}
+
+.search-bar:focus {
+    background-color: #cba6fd;
+    border: 4px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 2px black;
 }
 
 /* Card Styling */
@@ -40,11 +49,12 @@ body {
 }
 
 .card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 5px solid black;
+    width: 100%;         /* Gambar mengisi lebar elemen induk */
+    height: 200px;        /* Menjaga rasio aspek asli gambar */
+    /* max-height: 200px;   Membatasi tinggi gambar maksimal 200px */
+    object-fit: cover;   /* Memastikan gambar memenuhi area yang disediakan */
 }
+
 
 /* Card Body Styling */
 .card-body {

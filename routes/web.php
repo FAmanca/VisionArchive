@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,9 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/profile', [ProfileController::class,'index'])->name('profile');
+
+Route::get('/home', [HomeController::class,'index'])->name('home');
 
 // Route Auth
 Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
@@ -37,11 +39,12 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::post('logout', [AuthController::class,'logout'])->name('logout');
 });
 
-// Route Bikin Gambar
+// Route Gambar
 Route::group(['prefix'=> 'image','as'=> 'image.'], function () {
     Route::get('create', [ImageController::class,'create'])->name('create');
     Route::post('store', [ImageController::class,'store'])->name('store');
     Route::post('newalbum', [AlbumController::class,'store'])->name('newalbum');
+    Route::delete('/image/{image}', [ImageController::class, 'delete'])->name('delete');
 });
 
 

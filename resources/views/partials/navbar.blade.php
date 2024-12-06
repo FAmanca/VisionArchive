@@ -19,15 +19,20 @@
                 {{-- Check if the user is logged in --}}
                 @if (Auth::check())
                     {{-- If logged in, show logout and post image --}}
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <form action="{{ route('auth.logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="nav-link list btn btn-link">Logout</button>
                         </form>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link list" href="{{ route('image.create') }}">
                             <button class="neobtn">Post an Image</button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link list" href="/profile">
+                            <img src="{{ asset('images/bg.png') }}" alt="" width="50px" height="50px" style="border-radius: 100%">
                         </a>
                     </li>
                 @else
