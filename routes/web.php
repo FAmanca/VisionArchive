@@ -44,7 +44,9 @@ Route::group(['prefix'=> 'image','as'=> 'image.'], function () {
     Route::get('create', [ImageController::class,'create'])->name('create');
     Route::post('store', [ImageController::class,'store'])->name('store');
     Route::post('newalbum', [AlbumController::class,'store'])->name('newalbum');
-    Route::delete('/image/{image}', [ImageController::class, 'delete'])->name('delete');
+    Route::get('/edit/{image}', [ImageController::class, 'edit'])->name('edit');
+    Route::put('/update/{image}', [ImageController::class, 'update'])->name('update');
+    Route::delete('/delete/{image}', [ImageController::class, 'delete'])->name('delete');
 });
 
 

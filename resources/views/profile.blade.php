@@ -4,7 +4,7 @@
     <div class="container">
         <div class="neoprofile-header d-flex justify-content-start my-3 position-relative">
             <div class="row w-100">
-                <div class="neoprofile-image col-2 me-3">
+                <div class="neoprofile-profile col-2 me-3">
                     <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="neoprofile-img">
                 </div>
                 <div class="neoprofile-info col-6">
@@ -22,7 +22,7 @@
 
 
 
-        <div class="neoprofile-bio mt-4">
+        <div class="neoprofile-image mt-4">
             <h3>Your Images</h3>
             <div class="image-container">
                 @if ($images->isEmpty())
@@ -33,7 +33,7 @@
                             <img src="{{ asset('storage/' . $image->foto) }}" class="img-thumbnail" alt="...">
 
                             <div class="action-buttons position-absolute top-0 end-0 p-2">
-                                <a href="" class="neobtn-edit me-1" title="Edit">
+                                <a href="{{ route('image.edit', $image->id) }}" class="neobtn-edit me-1" title="Edit">
                                     <i style="color: black" class="fas fa-pen"></i>
                                 </a>
 
@@ -78,13 +78,25 @@
         </div>
 
 
-        <div class="neoprofile-activity mt-4">
-            <h3>Recent Activity</h3>
-            <ul>
-                <li>Posted a new photo: "Beautiful Sunset" 2 hours ago</li>
-                <li>Commented on "Vacation Pictures" 1 day ago</li>
-                <li>Liked "Amazing Artwork" 3 days ago</li>
-            </ul>
+        <div class="neoprofile-albums mt-4">
+            <h3>Your Albums</h3>
+            <table class="neoprofile-albums-table">
+                <thead>
+                    <th class="bg-violet">Judul album</th>
+                    <th class="bg-yellow">Deskripsi</th>
+                    <th class="bg-violet">Tanggal Buat</th>
+                    <th class="bg-yellow">Aksi</th>
+                </thead>
+                <tbody>
+                    @foreach ($albums as $album)
+                        <tr>
+                            <td>{{ $album->nama_album }}</td>
+                            <td>{{ $album->deskripsi }}</td>
+                            <td>{{ $album->tanggal_buat }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <div class="neoprofile-settings mt-4">

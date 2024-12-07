@@ -33,7 +33,7 @@
                                 <button type="submit" class="neobtn">Login</button>
                             </div>
                         </form>
-                        <p class="mt-3 text-center">Don't have an account? <a href="/signup" class="toggle-form">Sign Up here</a></p>
+                        <p class="mt-3 text-center">Don't have an account? <a href="{{ route('auth.signup') }}" class="toggle-form">Sign Up here</a></p>
                     </div>
                 </div>
             </div>

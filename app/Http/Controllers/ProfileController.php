@@ -9,8 +9,10 @@ class ProfileController extends Controller
 {
     public function index() {
         $images = Auth::user()->images;
+        $albums = Auth::user()->albums;
         return view("profile", [
-            "images"=> $images
+            "images"=> $images,
+            "albums"=> $albums
         ]);
     }
 }
