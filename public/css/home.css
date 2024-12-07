@@ -31,13 +31,35 @@ body {
 /* Card Styling */
 .card {
     border: 5px solid black;
-    border-radius: 8px;
-    box-shadow: 8px 8px black;
+    border-radius: 6px;
+    box-shadow: 5px 5px black;
     overflow: hidden;
     position: relative;
-    background-color: #ffc6c6;
+    background-color: #fff;
     transition: transform 0.3s ease;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
 }
+
+.grid {
+    margin: 0 auto;
+}
+
+.grid-item {
+    margin: 10px; /* Spasi antar item lebih besar */
+}
+
+.grid-item img {
+    width: 100%; /* Memastikan gambar responsif */
+    display: block;
+    object-fit: cover;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+
 
 .card:hover {
     transform: scale(1.05);
@@ -49,11 +71,13 @@ body {
 }
 
 .card-img-top {
-    width: 100%;         /* Gambar mengisi lebar elemen induk */
-    height: 200px;        /* Menjaga rasio aspek asli gambar */
-    /* max-height: 200px;   Membatasi tinggi gambar maksimal 200px */
-    object-fit: cover;   /* Memastikan gambar memenuhi area yang disediakan */
+    /* width: 100%;
+    height: 200px; */
+    object-fit: cover;     /* Memotong gambar agar pas dengan dimensi */
 }
+
+
+
 
 
 /* Card Body Styling */
