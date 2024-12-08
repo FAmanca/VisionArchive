@@ -16,15 +16,7 @@
                     <a class="nav-link list" href="#">Contact</a>
                 </li>
 
-                {{-- Check if the user is logged in --}}
                 @if (Auth::check())
-                    {{-- If logged in, show logout and post image --}}
-                    {{-- <li class="nav-item">
-                        <form action="{{ route('auth.logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="nav-link list btn btn-link">Logout</button>
-                        </form>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link list" href="{{ route('image.create') }}">
                             <button class="neobtn">Post an Image</button>

@@ -44,26 +44,26 @@
                             </div>
 
                             <!-- Modal Hapus -->
-                            <div class="modal fade" id="deleteModal{{ $image->id }}" tabindex="-1"
+                            <div class="modal fade " id="deleteModal{{ $image->id }}" tabindex="-1"
                                 aria-labelledby="deleteModalLabel{{ $image->id }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content neomodal">
+                                        <div class="modal-header neomodal-header">
                                             <h5 class="modal-title" id="deleteModalLabel{{ $image->id }}">Delete Image
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close" style=""></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body neomodal-body">
                                             Are you sure you want to delete this image?
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
+                                        <div class="modal-footer neomodal-footer">
+                                            <button type="button" class="neoprofile-logout mx-2" data-bs-dismiss="modal"
+                                                style="color: white; background-color: gray">Cancel</button>
                                             <form action="{{ route('image.delete', $image->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="neoprofile-logout">Delete</button>
                                             </form>
                                         </div>
                                     </div>
@@ -82,10 +82,10 @@
             <h3>Your Albums</h3>
             <table class="neoprofile-albums-table">
                 <thead>
-                    <th class="bg-violet">Judul album</th>
-                    <th class="bg-yellow">Deskripsi</th>
-                    <th class="bg-violet">Tanggal Buat</th>
-                    <th class="bg-yellow">Aksi</th>
+                    <th class="bg-violet">Album Title</th>
+                    <th class="bg-yellow">Description</th>
+                    <th class="bg-violet">Created at</th>
+                    <th class="bg-yellow">Action</th>
                 </thead>
                 <tbody>
                     @foreach ($albums as $album)
@@ -93,6 +93,8 @@
                             <td>{{ $album->nama_album }}</td>
                             <td>{{ $album->deskripsi }}</td>
                             <td>{{ $album->tanggal_buat }}</td>
+                            <td>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

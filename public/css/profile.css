@@ -245,6 +245,27 @@
     box-shadow: 2px 2px  black;
 }
 
+.neomodal {
+    background-color: #fff8e7 ;
+    border-radius: 2px;
+    border: 5px solid black;
+    box-shadow: 4px 6px  black;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+
+}
+
+.neomodal-header {
+    border-bottom: 5px solid black;
+    background-color: #fce4f2;
+}
+
+.neomodal-footer {
+    border: none;
+}
+
 /* Profil Responsif */
 @media (max-width: 768px) {
     .neoprofile-header {

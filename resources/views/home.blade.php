@@ -29,24 +29,24 @@
         </div>
 
         {{-- New Arrivals Section --}}
-<h2 class="mb-4">New Arrivals</h2>
-<div class="grid">
-    @foreach ($newimages as $newimage)
-        <div class="grid-item">
-            <a href="#" class="card-link">
-                <div class="card">
-                    <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
-                    {{-- Card Buttons --}}
-                    <div class="card-body text-center">
-                        <button class="btn btn-like"><i class="fa fa-heart"></i></button>
-                        <button class="btn btn-download"><i class="fa fa-download"></i></button>
-                        <button class="btn btn-share"><i class="fa fa-share-alt"></i></button>
-                    </div>
+        <h2 class="mb-4">New Arrivals</h2>
+        <div class="grid">
+            @foreach ($newimages as $newimage)
+                <div class="grid-item">
+                    <a href="{{ route('image.show', $newimage->id) }}" class="card-link">
+                        <div class="card">
+                            <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
+                            {{-- Card Buttons --}}
+                            <div class="card-body text-center">
+                                <button class="btn btn-like"><i class="fa fa-heart"></i></button>
+                                <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i class="fa fa-download"></i></a>
+                                <button class="btn btn-share"><i class="fa fa-share"></i></button>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
+            @endforeach
         </div>
-    @endforeach
-</div>
 
 
         {{-- Pagination (Dummy) --}}
@@ -62,7 +62,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var grid = document.querySelector('.grid');
             var msnry = new Masonry(grid, {
                 itemSelector: '.grid-item',
@@ -71,6 +71,4 @@
             });
         });
     </script>
-
-
 @endsection

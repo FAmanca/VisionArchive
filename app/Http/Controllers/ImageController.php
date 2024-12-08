@@ -10,13 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
+    public function show(Image $image)
+    {
+        $image->load('user', 'comments');
+
+        return view('show', [
+            'image' => $image,
+        ]);
+    }
+
+
     public function create()
     {
         $data = null;
         $albums = Auth::user()->albums;
         return view("create", [
             "albums" => $albums,
-            "data"=> $data
+            "data" => $data
         ]);
     }
 
@@ -50,16 +60,18 @@ class ImageController extends Controller
         return redirect()->route('home')->with('success', 'Foto berhasil diunggah!');
     }
 
-    public function edit(Image $image) {
+    public function edit(Image $image)
+    {
         $data = $image;
         $albums = Auth::user()->albums;
         return view("create", [
             "albums" => $albums,
-            "data"=> $data,
+            "data" => $data,
         ]);
     }
 
-    public function update(Request $request, Image $image) {
+    public function update(Request $request, Image $image)
+    {
         $nowDate = Carbon::now('Asia/Jakarta');
         $request->validate([
             'judul_foto' => 'required|string|max:255',
@@ -93,5 +105,16 @@ class ImageController extends Controller
         }
 
         return redirect()->route('profile')->with('error', 'Image not found');
+    }
+
+    public function download($id)
+    {
+        $image = Image::findOrFail($id);
+        $filePath = storage_path('app/public/' . $image->foto);
+        if (!file_exists($filePath)) {
+            abort(404, 'File tidak ditemukan.');
+        }
+
+        return response()->download($filePath, $image->judul_foto . '.' . pathinfo($filePath, PATHINFO_EXTENSION));
     }
 }
