@@ -133,11 +133,19 @@ body {
     padding: 10px;
     background-color: #fff;
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: flex-end;
     gap: 10px;
     align-items: center;
-    border-top: 2px solid #000; /* Border above buttons */
+    border-top: 2px solid #000;
 }
+
+/* .card-body {
+    padding: 10px;
+    background-color: #fff;
+    text-align: right;
+    gap: 10px;
+    border-top: 2px solid #000;
+} */
 
 /* Card Title Styling */
 .card-title {
@@ -197,33 +205,66 @@ body {
     color: #fff;
 }
 
-/* Filter and Sort Buttons */
 button {
     margin: 0 5px;
 }
 
-/* Modal Styling */
 .modal-body img {
     width: 100%;
     height: auto;
     margin-bottom: 15px;
 }
 
-/* Responsive Grid Adjustments */
+.loader {
+    width: 100px;
+    height: 100px;
+    border: 6px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+  .loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: #f79561 transparent;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 @media (max-width: 768px) {
     .card-body {
         display: flex;
         justify-content: space-between;
         padding: 5px;
-        gap: 5px; /* Smaller gap between buttons */
+        gap: 5px;
     }
 
     .btn {
-        padding: 5px 8px; /* Smaller padding for mobile */
+        padding: 5px 8px;
     }
 
     .btn i {
-        font-size: 1rem; /* Adjust icon size for mobile */
+        font-size: 1rem;
     }
 
     .card {
