@@ -60,4 +60,23 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function update(Request $request) {
+        $request->validate([
+            'username' => 'required',
+            'pfp' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:10240',
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        if ($request->hasFile('pfp')) {
+            $path = $request->file('pfp')->store('profile_pict', 'public');
+            $user->pfp = $path;
+        }
+
+        $user->username = $request->username;
+        $user->save();
+
+        return back();
+    }
 }

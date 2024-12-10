@@ -5,13 +5,18 @@
         <div class="neoprofile-header d-flex justify-content-start my-3 position-relative">
             <div class="row w-100">
                 <div class="neoprofile-profile col-2 me-3">
-                    <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="neoprofile-img">
+                    @if (Auth::user()->pfp != null)
+                        <img src="{{ asset('storage/' . Auth::user()->pfp) }}" alt="Profile Picture" class="neoprofile-img">
+                    @else
+                        <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="neoprofile-img">
+                    @endif
                 </div>
                 <div class="neoprofile-info col-6">
                     <h2 class="neoprofile-name">{{ Auth::user()->username }}</h2>
                     <p class="neoprofile-email">{{ Auth::user()->email }}</p>
                     <p class="neoprofile-created-at">Joined: {{ Auth::user()->created_at->format('M d, Y') }}</p>
-                    <a href="/edit-profile" class="neoprofile-edit">Edit Profile</a>
+                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="" class="neoprofile-edit">Edit
+                        Profile</a>
                 </div>
             </div>
             <form action="{{ route('auth.logout') }}" class="position-absolute top-0 end-0 mt-2 me-3" method="POST">
@@ -109,4 +114,31 @@
             </ul>
         </div>
     </div>
+
+    <!-- Modal Edit Profile -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content brumodal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Your Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <label class="">Username</label>
+                        <input type="text" class="bruform-input my-2" placeholder="Username..."
+                            value="{{ Auth::user()->username }}" name="username" />
+                        <label class="my-2">Profile Pict</label>
+                        <input type="file" class="bruform-input" style="background-color: #E6E6FA" name="pfp" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="bruform-submit">Edit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal --}}
 @endsection

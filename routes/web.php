@@ -25,6 +25,7 @@ Route::get('/', function () {
 });
 
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
+Route::post('/profile/update', [AuthController::class,'update'])->name('profile.update');
 
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::get('/search', [SearchController::class,'search'])->name('home.search');

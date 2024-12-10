@@ -15,4 +15,8 @@ class ProfileController extends Controller
             "albums"=> $albums
         ]);
     }
+
+    public function edit() {
+        return view("editprofile");
+    }
 }
