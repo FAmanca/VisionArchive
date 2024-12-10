@@ -5,11 +5,7 @@
         <div class="neoprofile-header d-flex justify-content-start my-3 position-relative">
             <div class="row w-100">
                 <div class="neoprofile-profile col-2 me-3">
-                    @if (Auth::user()->pfp != null)
-                        <img src="{{ asset('storage/' . Auth::user()->pfp) }}" alt="Profile Picture" class="neoprofile-img">
-                    @else
-                        <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="neoprofile-img">
-                    @endif
+                    <img src="{{ Auth::user()->pfp != null ? asset('storage/' . Auth::user()->pfp) : asset('images/bg.png') }}" alt="Profile Picture" class="neoprofile-img">
                 </div>
                 <div class="neoprofile-info col-6">
                     <h2 class="neoprofile-name">{{ Auth::user()->username }}</h2>

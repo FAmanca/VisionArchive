@@ -24,13 +24,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link list" href="/profile">
-                            @if (Auth::user()->pfp != null)
-                                <img src="{{ asset('storage/' . Auth::user()->pfp) }}" alt="" width="50px" height="50px"
-                                    style="border-radius: 100%">
-                            @else
-                                <img src="{{ asset('images/bg.png') }}" alt="" width="50px" height="50px"
-                                    style="border-radius: 100%">
-                            @endif
+                            <img src="{{ Auth::user()->pfp != null ? asset('storage/' . Auth::user()->pfp) : asset('images/bg.png') }}" alt="" width="50px" height="50px" style="border-radius: 100%">
                         </a>
                     </li>
                 @else

@@ -26,7 +26,7 @@
                         <!-- Komentar Form -->
                         <div class="d-flex align-items-start mb-3">
                             <!-- Gambar Profil -->
-                            <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle me-3"
+                            <img src="{{ Auth::user()->pfp != null ? asset('storage/' . Auth::user()->pfp) : asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle me-3"
                                 style="width: 40px; height: 40px; object-fit: cover;">
                             <div class="w-100">
                                 <!-- Input Komentar -->
@@ -53,8 +53,7 @@
                     <!-- Komentar Lain -->
                     @foreach ($image->comments as $comment)
                         <div class="d-flex align-items-start mb-3">
-                            <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle me-3"
-                                style="width: 40px; height: 40px; object-fit: cover;">
+                            <img src="{{$comment->user->pfp != null ? asset('storage/' . $comment->user->pfp) : asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle me-3" style="width: 40px; height: 40px; object-fit: cover;">
                             <div>
                                 <p class="mb-0"><strong>{{ $comment->user->username }}</strong></p>
                                 <p>{{ $comment->isi_komentar }}</p>
@@ -67,7 +66,7 @@
             <!-- Bagian User -->
             <div class="col-lg-4 col-md-12 mt-3 mb-5">
                 <div class="p-3 d-flex flex-column align-items-center text-center neo-image-uploader">
-                    <img src="{{ asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle mb-3"
+                    <img src="{{ $image->user->pfp != null ? asset('storage/' . $image->user->pfp) : asset('images/bg.png') }}" alt="Profile Picture" class="rounded-circle mb-3"
                         style="width: 70px; height: 70px; object-fit: cover;">
                     <div>
                         <p class="mb-2">{{ $image->user->username }}</p>
