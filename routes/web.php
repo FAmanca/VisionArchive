@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 
 Route::get('/home', [HomeController::class,'index'])->name('home');
+Route::get('/search', [SearchController::class,'search'])->name('home.search');
 
 
 // Route Auth

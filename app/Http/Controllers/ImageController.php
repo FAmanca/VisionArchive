@@ -12,7 +12,10 @@ class ImageController extends Controller
 {
     public function show(Image $image)
     {
-        $image->load('user', 'comments');
+        $image = Image::with(['user', 'comments' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->find($image->id);
+
 
         return view('show', [
             'image' => $image,

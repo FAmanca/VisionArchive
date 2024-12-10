@@ -9,9 +9,13 @@ class HomeController extends Controller
 {
     public function index() {
         // $newimages = Image::orderBy("created_at","desc")->get();
-        $newimages = Image::all();
+        $key = null;
+        $newimages = Image::orderBy('created_at', 'desc')->get();
+        $search = null;
         return view("home", [
-            "newimages"=> $newimages
+            "newimages"=> $newimages,
+            "keys" => $key,
+            "search"=> $search
         ]);
     }
 }
