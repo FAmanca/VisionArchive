@@ -64,6 +64,17 @@ body, html {
     transition: background-color 0.3s ease;
 }
 
+.neogbtn {
+    background-color: #E6E6FA;
+    border: 3px solid black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    box-shadow: 3px 3px black;
+    transition: background-color 0.3s ease;
+}
+
 /* Hover effect for the button */
 .neobtn:hover {
     background-color: #e67e22;

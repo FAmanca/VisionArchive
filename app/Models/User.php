@@ -23,7 +23,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'pfp'
+        'pfp',
+        'google_id',
+        'google_token',
+        'google_refresh_token',
     ];
 
     /**

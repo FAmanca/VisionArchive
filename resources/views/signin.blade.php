@@ -34,6 +34,13 @@
                             </div>
                         </form>
                         <p class="mt-3 text-center">Don't have an account? <a href="{{ route('auth.signup') }}" class="toggle-form">Sign Up here</a></p>
+                        <div class="d-grid">
+                            <hr>
+                            <p>Or</p>
+                            <a href="{{ route('auth.redirect') }}" style="color: black; text-decoration: none" class="neogbtn">
+                                Continue With Google
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

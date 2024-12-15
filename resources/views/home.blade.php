@@ -14,6 +14,7 @@
         {{-- SEARCH RESULT QUERY --}}
         @if ($keys != null)
             <h2>search for {{ $search }}</h2>
+            {{ $search == "furina" ? "Waifu nya developer tuh mang" : "" }}
             <div class="grid">
                 @foreach ($keys as $key)
                     <div class="grid-item">
@@ -55,25 +56,24 @@
 
             {{-- New Arrivals Section --}}
             <h2 class="mb-4">New Arrivals</h2>
-                <div class="grid">
-                    @foreach ($newimages as $newimage)
-                        <div class="grid-item">
-                            <a href="{{ route('image.show', $newimage->id) }}" class="card-link">
-                                <div class="card">
-                                    <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top"
-                                        alt="Image">
-                                    {{-- Card Buttons --}}
-                                    <div class="card-body text-center">
-                                        <button class="btn btn-like"><i class="fa fa-heart"></i></button>
-                                        <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i
-                                                class="fa fa-download"></i></a>
-                                        <button class="btn btn-share"><i class="fa fa-share"></i></button>
-                                    </div>
+            <div class="grid">
+                @foreach ($newimages as $newimage)
+                    <div class="grid-item">
+                        <a href="{{ route('image.show', $newimage->id) }}" class="card-link">
+                            <div class="card">
+                                <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
+                                {{-- Card Buttons --}}
+                                <div class="card-body text-center">
+                                    <button class="btn btn-like"><i class="fa fa-heart"></i></button>
+                                    <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i
+                                            class="fa fa-download"></i></a>
+                                    <button class="btn btn-share"><i class="fa fa-share"></i></button>
                                 </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
 
 
             {{-- Pagination (Dummy) --}}
@@ -102,15 +102,16 @@
             var imagesLoaded = 0;
             var totalImages = images.length;
 
-            // Fungsi untuk mengecek jika semua gambar telah dimuat
+            if (totalImages === 0) {
+                LoadImage();
+            }
+
             function onImageLoad() {
                 imagesLoaded++;
                 if (imagesLoaded === totalImages) {
-                    // Semua gambar sudah dimuat, jalankan kode berikutnya
                     content.style.display = 'block';
                     load.style.display = 'none';
 
-                    // Inisialisasi Masonry
                     var msnry = new Masonry(grid, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-item',
@@ -119,20 +120,24 @@
                 }
             }
 
-            // Menambahkan event listener untuk setiap gambar
+            function LoadImage() {
+                content.style.display = 'block';
+                load.style.display = 'none';
+
+                var msnry = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: '.grid-item',
+                    percentPosition: true
+                });
+            }
+
             images.forEach(function(image) {
                 image.addEventListener('load', onImageLoad);
 
-                // Jika gambar sudah ada di cache, langsung hitung sebagai dimuat
                 if (image.complete) {
                     onImageLoad();
                 }
             });
-
-            // Jika tidak ada gambar, langsung jalankan
-            if (totalImages === 0) {
-                onImageLoad();
-            }
         });
     </script>
 @endsection
