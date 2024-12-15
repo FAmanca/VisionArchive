@@ -79,4 +79,8 @@ class AuthController extends Controller
 
         return back();
     }
+
+    public function updatePassword(Request $request) {
+        
+    }
 }

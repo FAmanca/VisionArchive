@@ -1,8 +1,16 @@
 <nav class="navbar navbar-expand-lg bg">
     <div class="container-fluid">
-        <a class="navbar-brand p-3 fw-bolder" href="/">
-            <h3>Vision Archive</h3>
+        <a class="navbar-brand d-flex align-items-center p-3 fw-bolder" href="/">
+            <img
+                src="{{ asset('images/VisionArchive-removebg-preview.png') }}"
+                alt="Vision Archive Logo"
+                width="50"
+                height="50"
+                class="d-inline-block align-text-top me-2"
+            >
+            <span class="ms-2 fs-4">Vision Archive</span>
         </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
