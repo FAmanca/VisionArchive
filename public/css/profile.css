@@ -52,6 +52,32 @@
     -o-transition: all 0.3s ease;
 }
 
+.neoprofile-album-action {
+    display: inline-block;
+    background-color: #ff5d5d;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 4px 4px  black;
+    border: 3px solid black;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.danger {
+    background-color: #ff5d5d;
+
+}
+
 .neoprofile-logout {
     display: inline-block;
     background-color: #ff5d5d;
@@ -73,7 +99,11 @@
     -o-transition: all 0.3s ease;
 }
 
-.neoprofile-edit:hover, .neoprofile-logout:hover {
+.neoblue {
+    background-color: #a1bfff;
+}
+
+.neoprofile-edit:hover, .neoprofile-logout:hover, .neoprofile-album-action:hover {
     box-shadow: 2px 2px  black;
 }
 
@@ -218,6 +248,10 @@
     -webkit-transition: filter 0.3s ease-out;
 }
 
+.gray {
+    background-color: #E6E6FA;
+}
+
 .img-thumbnail:hover {
     filter: brightness(0.7);
     -webkit-filter: brightness(0.7);
@@ -310,7 +344,7 @@
         font-size: 0.9rem;
     }
 
-    .neoprofile-logout {
+    .neoprofile-logout, .neoprofile-album-action{
         display: block;
         margin: 10px auto;
         padding: 8px 15px;

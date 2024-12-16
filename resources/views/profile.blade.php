@@ -82,32 +82,99 @@
 
         <div class="neoprofile-albums mt-4">
             <h3>Your Albums</h3>
-            <table class="neoprofile-albums-table">
-                <thead>
-                    <th class="bg-violet">Album Title</th>
-                    <th class="bg-yellow">Description</th>
-                    <th class="bg-violet">Created at</th>
-                    <th class="bg-yellow">Action</th>
-                </thead>
-                <tbody>
-                    @foreach ($albums as $album)
-                        <tr>
-                            <td>{{ $album->nama_album }}</td>
-                            <td>{{ $album->deskripsi }}</td>
-                            <td>{{ $album->tanggal_buat }}</td>
-                            <td>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            @if ($albums->isEmpty())
+                <p>No Albums created yet.</p>
+            @else
+                <table class="neoprofile-albums-table">
+                    <thead>
+                        <th class="bg-violet">Album Title</th>
+                        <th class="bg-yellow">Description</th>
+                        <th class="bg-violet">Created at</th>
+                        <th class="bg-yellow">Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($albums as $album)
+                            <tr>
+                                <td>{{ $album->nama_album }}</td>
+                                <td>{{ $album->deskripsi }}</td>
+                                <td>{{ $album->tanggal_buat }}</td>
+                                <td width="20%">
+                                    <button data-bs-toggle="modal" data-bs-target="#editalbum{{ $album->id }}"
+                                        class="neoprofile-album-action neoblue">Edit</button>
+                                    <button data-bs-toggle="modal" data-bs-target="#deletealbum{{ $album->id }}"
+                                        class="neoprofile-album-action">Hapus</button>
+                                </td>
+                            </tr>
+                            <!-- Modal Hapus Album-->
+                            <div class="modal fade" id="deletealbum{{ $album->id }}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content brumodal gray">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Album</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('image.deletealbum', $album->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <h6>Are you sure you want to delete the album?</h6>
+                                                <h6 style="color: red"><i>All images related to the album will be deleted.</i></h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="bruform-submit" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="bruform-submit danger">Delete Album</button>
+                                        </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- Modal --}}
+
+                            <!-- Modal Edit Album-->
+                            <div class="modal fade" id="editalbum{{ $album->id }}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content brumodal gray">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Album</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('image.updatealbum', $album->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="text" class="bruform-input my-2" name="title"
+                                                    placeholder="Album title..." value="{{ $album->nama_album }}" />
+                                                <textarea type="text" class="bruform-input my-2" name="description" placeholder="Album Descriptions...">{{ $album->deskripsi }}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="bruform-submit">Edit Album</button>
+                                        </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- Modal --}}
+
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
 
         <div class="neoprofile-settings mt-4">
             <h3>Settings</h3>
             <ul>
-                <li><a data-bs-toggle="modal" data-bs-target="#changepass" href="" class="neoprofile-link">Change
-                        Password</a></li>
+                @if (Auth::user()->google_id == null)
+                    <li><a data-bs-toggle="modal" data-bs-target="#changepass" href=""
+                            class="neoprofile-link">Change
+                            Password</a></li>
+                @endif
                 <li><a href="/delete-account" class="neoprofile-link">Delete Account</a></li>
             </ul>
         </div>
@@ -140,7 +207,7 @@
     </div>
     {{-- Modal --}}
 
-    <!-- Modal Change Profile -->
+    <!-- Modal Change Pass -->
     <div class="modal fade" id="changepass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -170,4 +237,6 @@
         </div>
     </div>
     {{-- Modal --}}
+
+
 @endsection

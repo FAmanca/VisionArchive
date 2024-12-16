@@ -59,6 +59,8 @@ Route::group(['prefix' => 'image', 'as' => 'image.'], function () {
     Route::post('newalbum', [AlbumController::class, 'store'])->name('newalbum');
     Route::get('edit/{image}', [ImageController::class, 'edit'])->name('edit');
     Route::put('update/{image}', [ImageController::class, 'update'])->name('update');
+    Route::put('updatealbum/{album}', [AlbumController::class, 'update'])->name('updatealbum');
+    Route::delete('deletealbum/{album}', [AlbumController::class, 'delete'])->name('deletealbum');
     Route::delete('delete/{image}', [ImageController::class, 'delete'])->name('delete');
 
     // UNDUH

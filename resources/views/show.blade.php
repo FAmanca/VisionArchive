@@ -12,6 +12,8 @@
                     <a href="{{ route('image.download', $image->id) }}" class="btn btn-download"><i
                             class="fa fa-download"></i></a>
                     <button class="btn btn-share"><i class="fa fa-share"></i></button>
+                    <button class="btn btn-share"><i class="fa fa-exclamation-triangle"></i></button>
+
                 </div>
                 <div class="p-4">
                     <h2>{{ $image->judul_foto }}</h2>
