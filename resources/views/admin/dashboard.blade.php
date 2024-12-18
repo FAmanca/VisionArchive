@@ -37,7 +37,7 @@
                 <div class="card stat stat-red">
                     <div class="card-body">
                         <h4>Total Reports</h4>
-                        <h5>0</h5>
+                        <h5>{{ $totalReports }}</h5>
                     </div>
                 </div>
             </div>

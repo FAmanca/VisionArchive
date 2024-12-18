@@ -82,8 +82,6 @@ class ImageController extends Controller
             'albumID' => 'required|exists:albums,id',
         ]);
 
-        $image = Image::findOrFail($image->id);
-
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('images', 'public');
             $image->foto = $path;

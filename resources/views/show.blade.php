@@ -11,8 +11,10 @@
                     <button class="btn btn-like"><i class="fa fa-heart"></i></button>
                     <a href="{{ route('image.download', $image->id) }}" class="btn btn-download"><i
                             class="fa fa-download"></i></a>
-                    <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i class="fa fa-share"></i></button>
-                    <button class="btn btn-share"><i class="fa fa-exclamation-triangle"></i></button>
+                    <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
+                            class="fa fa-share"></i></button>
+                    <button data-bs-toggle="modal" data-bs-target="#report" class="btn btn-share"><i
+                            class="fa fa-exclamation-triangle"></i></button>
 
                 </div>
                 <div class="p-4">
@@ -93,10 +95,39 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Salin link untuk membagikan halaman ini:</p>
+                    <p>Copy Link To Share</p>
                     <input type="text" class="bruform-input my-2" id="copyLinkInput" value="{{ url()->current() }}"
                         readonly />
-                    <button type="button" class="bruform-submit mt-2" onclick="copyToClipboard()">Salin Link</button>
+                    <button type="button" class="bruform-submit mt-2" onclick="copyToClipboard()">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- MODAL REPORT CUY --}}
+    <div class="modal fade" id="report" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content brumodal brumodal-red">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="shareModalLabel">Report Image</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('sendreport', $image->id) }}" method="POST">
+                        @csrf
+                        <select class="bruform-select mt-3" name="category">
+                            <option value="" selected disabled>Category</option>
+                            <option value="Spam/Advertisement">Spam/Advertisement</option>
+                            <option value="Inappropriate Content">Inappropriate Content</option>
+                            <option value="Copyright Violation">Copyright Violation</option>
+                            <option value="Harassment/Bullying">Harassment/Bullying</option>
+                            <option value="Pornography/Adult Content">Pornography/Adult Content</option>
+                        </select>
+                        <textarea type="text" class="bruform-input my-2" name="reason"></textarea>
+                        <input type="hidden" name="link" value="{{ url()->current() }}">
+                        <button type="submit" class="bruform-submit mt-2">Send Report</button>
+                    </form>
                 </div>
             </div>
         </div>

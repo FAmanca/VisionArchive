@@ -36,7 +36,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link list" href="">Reports</a>
+                    <a class="nav-link list" href="{{ route('admin.report') }}">Reports</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link list" href="">Notifications</a>

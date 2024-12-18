@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
@@ -27,10 +28,12 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::post('/sendreport{image}', [ReportController::class, 'create'])->name('sendreport');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manageusers', [UsersController::class, 'index'])->name('manageusers');
+    Route::get('/reports', [ReportController::class, 'index'])->name('report');
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

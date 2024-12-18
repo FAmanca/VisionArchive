@@ -24,5 +24,9 @@ class Image extends Model
     public function album(): belongsTo {
         return $this->belongsTo(Album::class, 'AlbumID');
     }
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'FotoId');
+    }
 
 }
