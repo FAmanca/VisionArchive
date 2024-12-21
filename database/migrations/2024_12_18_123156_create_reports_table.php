@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('UserId')->constrained()->onDelete('cascade');
-            $table->foreignId('FotoId')->constrained()->onDelete('cascade');
+            $table->foreignId('UserId');
+            $table->foreignId('FotoId');
             $table->enum('category', [
                 'Spam/Advertisement',
                 'Inappropriate Content',
@@ -22,7 +22,7 @@ return new class extends Migration
                 'Harassment/Bullying',
                 'Pornography/Adult Content',
             ]);
-            $table->text('reason')->nullable(); 
+            $table->text('reason')->nullable();
             $table->enum('status', ['pending', 'reviewed', 'resolved'])->default('pending'); // Status laporan
             $table->timestamps();
         });

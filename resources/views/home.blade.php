@@ -28,7 +28,9 @@
                                 <img src="{{ asset('storage/' . $key->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <a href="{{ route('image.like', $key->id) }}" class="btn btn-like" ><i style="{{ $key->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}" class="fa fa-heart"></i></a>
+                                    <a href="{{ route('image.like', $key->id) }}" class="btn btn-like"><i
+                                            style="{{ $key->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"
+                                            class="fa fa-heart"></i></a>
                                     <a href="{{ route('image.download', $key->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
@@ -65,7 +67,7 @@
             <h1 class="my-4">Explore Vision Collection</h1>
 
             {{-- Filter Section for New Arrivals --}}
-            <div class="row justify-content-between mb-4">
+            {{-- <div class="row justify-content-between mb-4">
                 <div class="col-auto">
                     <button class="btn btn-dark">Sort by Date</button>
                     <button class="btn btn-dark">Sort by Popularity</button>
@@ -78,19 +80,21 @@
                         <option value="3">People</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- New Arrivals Section --}}
             <h2 class="mb-4">New Arrivals</h2>
             <div class="grid">
-                @foreach ($newimages as $newimage)
+                @foreach ($newimages as $newimage)  
                     <div class="grid-item">
                         <a href="{{ route('image.show', $newimage->id) }}" class="card-link">
                             <div class="card">
                                 <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <a href="{{ route('image.like', $newimage->id) }}" class="btn btn-like" ><i class="fa fa-heart" style="{{ $newimage->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                                    <a href="{{ route('image.like', $newimage->id) }}" class="btn btn-like"><i
+                                            class="fa fa-heart"
+                                            style="{{ Auth::check() && $newimage->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
                                     <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share-{{ $newimage->id }}"
@@ -114,8 +118,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Salin link untuk membagikan halaman ini:</p>
-                                    <input type="text" class="bruform-input my-2"
-                                        id="copyLinkInput-{{ $newimage->id }}"
+                                    <input type="text" class="bruform-input my-2" id="copyLinkInput-{{ $newimage->id }}"
                                         value="{{ url('image/show/' . $newimage->id) }}" readonly />
                                     <button type="button" class="bruform-submit mt-2"
                                         onclick="copyToClipboard({{ $newimage->id }})">Salin

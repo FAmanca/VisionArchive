@@ -66,4 +66,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class, 'FotoId');
     }
+    public function banned()
+    {
+        return $this->hasOne(Ban::class, 'UserID');
+    }
 }

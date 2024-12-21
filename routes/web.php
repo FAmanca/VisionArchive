@@ -7,9 +7,11 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BannedController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -25,10 +27,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+Route::get('/banned', [BannedController::class, 'index'])->name('banned');
 
 Route::post('/sendreport{image}', [ReportController::class, 'create'])->name('sendreport');
 
@@ -37,12 +38,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manageusers', [UsersController::class, 'index'])->name('manageusers');
     Route::get('/reports', [ReportController::class, 'index'])->name('report');
+    Route::post('/ban/{user}', [BannedController::class, 'banned'])->name('banuser');
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/profile/update', [AuthController::class, 'update'])->name('profile.update');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('banned');
+
 Route::get('/search', [SearchController::class, 'search'])->name('home.search');
 
 
@@ -67,7 +72,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
 
 // Route Gambar
-Route::group(['prefix' => 'image', 'as' => 'image.'], function () {
+Route::group(['prefix' => 'image', 'as' => 'image.', 'middleware' => ['banned']], function () {
     Route::get('like/{image}', [LikeController::class, 'like'])->name('like');
     Route::get('create', [ImageController::class, 'create'])->name('create');
     Route::get('show/{image}', [ImageController::class, 'show'])->name('show');
