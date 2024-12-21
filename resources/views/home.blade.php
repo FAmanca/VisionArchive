@@ -28,7 +28,7 @@
                                 <img src="{{ asset('storage/' . $key->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <button class="btn btn-like"><i class="fa fa-heart"></i></button>
+                                    <a href="{{ route('image.like', $key->id) }}" class="btn btn-like" ><i class="fa fa-heart"></i></a>
                                     <a href="{{ route('image.download', $key->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
@@ -90,7 +90,7 @@
                                 <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <button class="btn btn-like"><i class="fa fa-heart"></i></button>
+                                    <a href="{{ route('image.like', $newimage->id) }}" class="btn btn-like" ><i class="fa fa-heart"></i></a>
                                     <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share-{{ $newimage->id }}"

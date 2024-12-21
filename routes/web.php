@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UsersController;
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
 // Route Gambar
 Route::group(['prefix' => 'image', 'as' => 'image.'], function () {
+    Route::get('like/{image}', [LikeController::class, 'like'])->name('like');
     Route::get('create', [ImageController::class, 'create'])->name('create');
     Route::get('show/{image}', [ImageController::class, 'show'])->name('show');
     Route::post('store', [ImageController::class, 'store'])->name('store');

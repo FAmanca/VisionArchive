@@ -8,7 +8,7 @@
                     style="max-width: 100%; border: 2px solid #ccc; border-radius: 8px;">
                 <!-- Tombol di bawah gambar -->
                 <div class="d-flex gap-2 mt-2 justify-content-end">
-                    <button class="btn btn-like"><i class="fa fa-heart"></i></button>
+                    <a href="{{ route('image.like', $image->id) }}" class="btn btn-like" ><i class="fa fa-heart"></i></a>
                     <a href="{{ route('image.download', $image->id) }}" class="btn btn-download"><i
                             class="fa fa-download"></i></a>
                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
