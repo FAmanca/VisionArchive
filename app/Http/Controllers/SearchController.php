@@ -14,11 +14,11 @@ class SearchController extends Controller
         ]);
 
         $newimages = Image::orderBy('created_at', 'desc')->get();
-        $key = $request->get('key');
+        $key = $request->key;
         $search = Image::where('judul_foto', 'like', "%$key%")->get();
 
         return view('home', [
-            'search'=> $key,
+            'search' => $key,
             "keys" => $search,
             "newimages" => $newimages
         ]);

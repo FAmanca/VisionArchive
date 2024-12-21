@@ -101,6 +101,8 @@ class ImageController extends Controller
     {
 
         if ($image) {
+            $image->comments()->delete();
+            $image->likes()->delete();
             $image->delete();
             return redirect()->route('profile')->with('success', 'Image deleted successfully');
         }

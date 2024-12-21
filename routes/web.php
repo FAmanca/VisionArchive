@@ -29,10 +29,12 @@ Route::get('/', function () {
     return view('landing');
 });
 
+
 Route::post('/sendreport{image}', [ReportController::class, 'create'])->name('sendreport');
 
+// Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manageusers', [UsersController::class, 'index'])->name('manageusers');
     Route::get('/reports', [ReportController::class, 'index'])->name('report');
 });

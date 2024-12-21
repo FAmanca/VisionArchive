@@ -28,5 +28,9 @@ class Image extends Model
     {
         return $this->hasMany(Report::class, 'FotoId');
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'FotoId');
+    }
 
 }

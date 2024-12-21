@@ -48,15 +48,13 @@ class AlbumController extends Controller
         $album = Album::with('images.comments')->find($album->id);
 
         foreach ($album->images as $image) {
-            // Ini ngehapus komentar dulu
+            // Hapus komentar dulu le
             $image->comments()->delete();
-        }
-
-        foreach ($album->images as $image) {
-            // Ini ngehapus gambar dulu
+            // Hapus Like
+            $image->likes()->delete();
+            // Hapus gambar le
             $image->delete();
         }
-
         // Ini ngehapus album
         $album->delete();
 

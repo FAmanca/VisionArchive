@@ -62,4 +62,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class,'UserID');
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'FotoId');
+    }
 }

@@ -9,4 +9,12 @@ class Like extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function image()
+    {
+        return $this->belongsTo(Image::class,'FotoId');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'UserID');
+    }
 }
