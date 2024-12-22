@@ -9,9 +9,22 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function index() {
-        $users = User::paginate(3);
+        $users = User::paginate(5);
         return view('admin.manageusers', [
-            'users' => $users
+            'users' => $users,
+            'search' => null
+        ]);
+    }
+
+    public function search(Request $request) {
+        $request->validate([
+            'search' => 'required',
+        ]);
+        $search = $request->input('search');
+        $users = User::where('username', 'like', '%' . $search . '%');
+        return view('admin.manageusers', [
+            'users' => $users->paginate(5),
+            'search' => $search
         ]);
     }
 }

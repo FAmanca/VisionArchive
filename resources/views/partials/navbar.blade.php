@@ -21,7 +21,7 @@
                     <a class="nav-link list" href="/home">Explore</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link list" href="#">Contact</a>
+                    <a class="nav-link list" href="/contact">Contact</a>
                 </li>
 
                 @if (Auth::check())

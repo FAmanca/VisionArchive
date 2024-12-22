@@ -8,7 +8,9 @@
                     style="max-width: 100%; border: 2px solid #ccc; border-radius: 8px;">
                 <!-- Tombol di bawah gambar -->
                 <div class="d-flex gap-2 mt-2 justify-content-end">
-                    <a href="{{ route('image.like', $image->id) }}" class="btn btn-like" ><i style="{{ $image->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}" class="fa fa-heart"></i></a>
+                    <a href="{{ route('image.like', $image->id) }}" class="btn btn-like"><i
+                        class="fa fa-heart"
+                        style="{{ Auth::check() && $image->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
                     <a href="{{ route('image.download', $image->id) }}" class="btn btn-download"><i
                             class="fa fa-download"></i></a>
                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
@@ -91,7 +93,7 @@
         <div class="modal-dialog">
             <div class="modal-content brumodal">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="shareModalLabel">Bagikan Halaman Ini</h1>
+                    <h1 class="modal-title fs-5" id="shareModalLabel">Share This Page</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

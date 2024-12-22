@@ -10,10 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
     public function index() {
-        $reports = Report::paginate(5);
+        $reports = Report::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.reports', [
             'reports' => $reports,
         ]);
+    }
+
+    public function deleteimage(Image $image)
+    {
+        if ($image) {
+            $image->comments()->delete();
+            $image->likes()->delete();
+            $image->reports()->delete();
+            $image->delete();
+            return back();
+        }
+
+        return back();
     }
 
     public function create(Request $request, Image $image) {

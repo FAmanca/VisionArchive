@@ -19,27 +19,13 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <!-- Dashboar -->
                 <li class="nav-item">
-                    <a class="nav-link list active"  href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <a class="nav-link list {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link list" href="{{ route('admin.manageusers') }}">Manage Users</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle list" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Content Management
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/admin/images">Manage Global Albums</a></li>
-                        <li><a class="dropdown-item" href="/admin/images">Manage Images</a></li>
-                        <li><a class="dropdown-item" href="/admin/comments">Manage Comments</a></li>
-                    </ul>
+                    <a class="nav-link list {{ Request::routeIs('admin.manageusers') ? 'active' : '' }}" href="{{ route('admin.manageusers') }}">Manage Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link list" href="{{ route('admin.report') }}">Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link list" href="">Notifications</a>
+                    <a class="nav-link list {{ Request::routeIs('admin.report') ? 'active' : '' }} " href="{{ route('admin.report') }}">Reports</a>
                 </li>
 
                 @if (Auth::check())

@@ -43,9 +43,10 @@
                         <p class="mt-3 text-center">Already have an account? <a href="{{ route('auth.signin') }}" class="toggle-form">Login here</a></p>
                         <div class="d-grid">
                             <p>Or</p>
-                            <button type="submit" class="neogbtn"><i class="fa-brands fa-google"></i>Continue With
-                                <span class="google-text">Google</span>
-                            </button>
+                            <a href="{{ route('auth.redirect') }}" style="color: black; text-decoration: none"
+                                class="neogbtn">
+                                Continue With Google
+                            </a>
                         </div>
                     </div>
                 </div>

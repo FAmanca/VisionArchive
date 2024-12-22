@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $totalImages = Image::count();
         $totalComments = Comment::count();
         $totalReports = Report::count();
+        $users = User::whereDate('created_at', today())->get();
         return view('admin.dashboard', [
             'totalUsers' => $totalUsers,
             'totalImages' => $totalImages,

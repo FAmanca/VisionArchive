@@ -48,6 +48,7 @@
 .bruform-input:focus {
     outline: none;
     background-color: #FFA6F6;
+    border: 3px solid black;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
 }
 

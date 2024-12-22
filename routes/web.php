@@ -29,20 +29,29 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/banned', [BannedController::class, 'index'])->name('banned');
 
 Route::post('/sendreport{image}', [ReportController::class, 'create'])->name('sendreport');
 
 // Admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['checkadmin']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manageusers', [UsersController::class, 'index'])->name('manageusers');
+    Route::get('/searchuser', [UsersController::class, 'search'])->name('searchuser');
     Route::get('/reports', [ReportController::class, 'index'])->name('report');
     Route::post('/ban/{user}', [BannedController::class, 'banned'])->name('banuser');
+    Route::delete('/deleteimage/{image}', [ReportController::class, 'deleteimage'])->name('deleteimage');
 });
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::post('/profile/update', [AuthController::class, 'update'])->name('profile.update');
+Route::group(['prefix' => 'profile', 'middleware' => ['checklogin'], 'as' => 'profile.'], function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
+    Route::post('/update', [AuthController::class, 'update'])->name('update');
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])
     ->name('home')
@@ -72,10 +81,10 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
 
 // Route Gambar
-Route::group(['prefix' => 'image', 'as' => 'image.', 'middleware' => ['banned']], function () {
+Route::get('show/{image}', [ImageController::class, 'show'])->name('image.show');
+Route::group(['prefix' => 'image', 'as' => 'image.', 'middleware' => ['checklogin', 'banned']], function () {
     Route::get('like/{image}', [LikeController::class, 'like'])->name('like');
     Route::get('create', [ImageController::class, 'create'])->name('create');
-    Route::get('show/{image}', [ImageController::class, 'show'])->name('show');
     Route::post('store', [ImageController::class, 'store'])->name('store');
     Route::post('newalbum', [AlbumController::class, 'store'])->name('newalbum');
     Route::get('edit/{image}', [ImageController::class, 'edit'])->name('edit');

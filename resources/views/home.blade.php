@@ -5,13 +5,7 @@
         <div class="row justify-content-center">
             <form action="{{ route('home.search') }}" class="w-75">
                 <div class="input-group mb-4">
-
-                    <input name="key" class="form-control search-bar p-3" type="text"
-                        placeholder="Search Vision Archive...">
-                    <select class="bruform-select mt-3" name="albumID">
-                        <option value="1">Search Images </option>
-                        <option value="1">Search User </option>
-                    </select>
+                    <input name="key" class="form-control search-bar p-3" type="text" placeholder="Search Vision Archive...">
                 </div>
             </form>
         </div>
@@ -29,8 +23,8 @@
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
                                     <a href="{{ route('image.like', $key->id) }}" class="btn btn-like"><i
-                                            style="{{ $key->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"
-                                            class="fa fa-heart"></i></a>
+                                            class="fa fa-heart"
+                                            style="{{ Auth::check() && $key->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
                                     <a href="{{ route('image.download', $key->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
@@ -45,12 +39,12 @@
                         <div class="modal-dialog">
                             <div class="modal-content brumodal">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="shareModalLabel">Bagikan Halaman Ini</h1>
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">Share This Page</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Salin link untuk membagikan halaman ini:</p>
+                                    <p>Copy Link To Share</p>
                                     <input type="text" class="bruform-input my-2" id="copyLinkInput"
                                         value="{{ url('image/show/' . $key->id) }}" readonly />
                                     <button type="button" class="bruform-submit mt-2" onclick="copyToClipboard()">Salin
@@ -85,7 +79,7 @@
             {{-- New Arrivals Section --}}
             <h2 class="mb-4">New Arrivals</h2>
             <div class="grid">
-                @foreach ($newimages as $newimage)  
+                @foreach ($newimages as $newimage)
                     <div class="grid-item">
                         <a href="{{ route('image.show', $newimage->id) }}" class="card-link">
                             <div class="card">
@@ -111,13 +105,13 @@
                         <div class="modal-dialog">
                             <div class="modal-content brumodal">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="shareModalLabel-{{ $newimage->id }}">Bagikan Halaman
-                                        Ini</h1>
+                                    <h1 class="modal-title fs-5" id="shareModalLabel-{{ $newimage->id }}">Share This Page
+                                    </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Salin link untuk membagikan halaman ini:</p>
+                                    <p>Copy Link To Share</p>
                                     <input type="text" class="bruform-input my-2" id="copyLinkInput-{{ $newimage->id }}"
                                         value="{{ url('image/show/' . $newimage->id) }}" readonly />
                                     <button type="button" class="bruform-submit mt-2"

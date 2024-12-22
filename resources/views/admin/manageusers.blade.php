@@ -1,6 +1,12 @@
 @extends('admin.layouts.admin')
 @section('dashboard')
     <div class="container mt-3">
+        <h2>Users</h2>
+        <h3>{{ $search != null ? 'Search results for "' . $search . '"' : '' }}</h3>
+        <form action="{{ route('admin.searchuser') }}">
+            @csrf
+            <input name="search" class="form-control search-bar mb-3" type="text" placeholder="Search Users">
+        </form>
         <table class="neoadmin-users-table table table-hover">
             <thead>
                 <th class="bg-green">Username</th>
@@ -16,7 +22,7 @@
                         <td><b>{{ $user->created_at }}</b></td>
                         <td>
                             @if ($user->banned)
-                                <p>User Dibanned Hingga {{ $user->banned->BannedUntil }}</p>
+                                <p>Banned until {{ $user->banned->BannedUntil }}</p>
                             @else
                                 <a data-bs-toggle="modal" data-bs-target="#banneduser-{{ $user->id }}"
                                     style="cursor: pointer; color: red">Banned User</a>
