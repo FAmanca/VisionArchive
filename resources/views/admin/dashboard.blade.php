@@ -49,12 +49,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h5>User Activity Graph</h5>
-                        <canvas id="userActivityGraph"></canvas>
+                        {!! $usersChart->renderHtml() !!}
+
                     </div>
                 </div>
             </div>
 
-            <!-- Grafik Pengguna Baru -->
+            <!-- New User Today -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">

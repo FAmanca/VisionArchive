@@ -112,8 +112,8 @@ class ImageController extends Controller
 
     public function download($id)
     {
-        $image = Image::findOrFail($id);
-        $filePath = storage_path('app/public/' . $image->foto);
+        $image = Image::findOrFail($id); //ini id foto
+        $filePath = storage_path('app/public/' . $image->foto); //ini path gambar, bisi beda di koe
         if (!file_exists($filePath)) {
             abort(404, 'File tidak ditemukan.');
         }

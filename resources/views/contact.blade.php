@@ -5,7 +5,7 @@
             <h2 class="neocontact-title">Contact Us</h2>
             <p class="neocontact-subtitle">We'd love to hear from you!</p>
 
-            <form action="https://formspree.io/f/xjkkbzjw" method="POST">
+            <form action="https://formspree.io/f/xeooprel" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label neocontact-label">Name</label>

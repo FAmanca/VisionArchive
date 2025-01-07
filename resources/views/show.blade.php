@@ -6,18 +6,54 @@
             <div class="col-lg-8 col-md-12 mt-3 mb-5">
                 <img src="{{ asset('storage/' . $image->foto) }}" alt="Image Preview" class="img-fluid neo-image-details"
                     style="max-width: 100%; border: 2px solid #ccc; border-radius: 8px;">
-                <!-- Tombol di bawah gambar -->
                 <div class="d-flex gap-2 mt-2 justify-content-end">
-                    <a href="{{ route('image.like', $image->id) }}" class="btn btn-like"><i
-                        class="fa fa-heart"
-                        style="{{ Auth::check() && $image->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                    @if (Auth::check())
+                        <a href="{{ route('image.like', $image->id) }}" class="btn btn-like"><i class="fa fa-heart"
+                                style="{{ Auth::check() && $image->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                    @else
+                        <a data-bs-toggle="modal" data-bs-target="#like-{{ $image->id }}" class="btn btn-like">
+                            <i class="fa fa-heart"></i>
+                        </a>
+                    @endif
+                    {{-- MODAL Like Belom Login CUY --}}
+                    <div class="modal fade" id="like-{{ $image->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content brumodal">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">You Need To Login First</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Please log in to like this image.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="{{ route('image.download', $image->id) }}" class="btn btn-download"><i
                             class="fa fa-download"></i></a>
                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
                             class="fa fa-share"></i></button>
-                    <button data-bs-toggle="modal" data-bs-target="#report" class="btn btn-share"><i
-                            class="fa fa-exclamation-triangle"></i></button>
 
+                    <button data-bs-toggle="modal" data-bs-target="{{ Auth::check() ? "#report" : "#belomlogin" }} " class="btn btn-share"><i
+                            class="fa fa-exclamation-triangle"></i></button>
+                    {{-- MODAL Report Belom Login CUY --}}
+                    <div class="modal fade" id="belomlogin" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content brumodal">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">You Need To Login First</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Please log in to report this image.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-4">
                     <h2>{{ $image->judul_foto }}</h2>
@@ -80,7 +116,7 @@
                         style="width: 70px; height: 70px; object-fit: cover;">
                     <div>
                         <p class="mb-2">{{ $image->user->username }}</p>
-                        <button class="btn btn-primary btn-sm w-100">Follow</button>
+                        {{-- <button class="btn btn-primary btn-sm w-100">Follow</button> --}}
                     </div>
                 </div>
             </div>

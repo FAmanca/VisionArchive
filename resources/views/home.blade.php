@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <form action="{{ route('home.search') }}" class="w-75">
                 <div class="input-group mb-4">
-                    <input name="key" class="form-control search-bar p-3" type="text" placeholder="Search Vision Archive...">
+                    <input name="key" class="form-control search-bar p-3" type="text"
+                        placeholder="Search Vision Archive...">
                 </div>
             </form>
         </div>
@@ -22,9 +23,17 @@
                                 <img src="{{ asset('storage/' . $key->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <a href="{{ route('image.like', $key->id) }}" class="btn btn-like"><i
-                                            class="fa fa-heart"
-                                            style="{{ Auth::check() && $key->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                                    @if (Auth::check())
+                                        <a href="{{ route('image.like', $key->id) }}" class="btn btn-like">
+                                            <i class="fa fa-heart"
+                                                style="{{ $key->likes->pluck('UserId')->contains(auth()->user()->id) ? 'color: blue' : '' }}"></i>
+                                        </a>
+                                    @else
+                                        <a data-bs-toggle="modal" data-bs-target="#like-{{ $key->id }}" class="btn btn-like">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    @endif
+
                                     <a href="{{ route('image.download', $key->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share" class="btn btn-share"><i
@@ -32,6 +41,22 @@
                                 </div>
                             </div>
                         </a>
+                    </div>
+                    {{-- MODAL Like Belom Login CUY --}}
+                    <div class="modal fade" id="like-{{ $key->id }}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered"> <!-- Kelas modal-dialog-centered ditambahkan -->
+                            <div class="modal-content brumodal">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">You Need To Login First</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Please log in to like this image.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     {{-- MODAL SHARE CUY --}}
                     <div class="modal fade" id="share-{{ $key->id }}" data-bs-backdrop="static"
@@ -56,27 +81,11 @@
                 @endforeach
             </div>
         @else
-            {{-- SEARCH QUERY --}}
+            {{-- INI SEARCH QUERY --}}
 
             <h1 class="my-4">Explore Vision Collection</h1>
 
-            {{-- Filter Section for New Arrivals --}}
-            {{-- <div class="row justify-content-between mb-4">
-                <div class="col-auto">
-                    <button class="btn btn-dark">Sort by Date</button>
-                    <button class="btn btn-dark">Sort by Popularity</button>
-                </div>
-                <div class="col-auto">
-                    <select class="form-select">
-                        <option selected>Filter by Category</option>
-                        <option value="1">Nature</option>
-                        <option value="2">Technology</option>
-                        <option value="3">People</option>
-                    </select>
-                </div>
-            </div> --}}
-
-            {{-- New Arrivals Section --}}
+            {{-- INI New Arrivals Section --}}
             <h2 class="mb-4">New Arrivals</h2>
             <div class="grid">
                 @foreach ($newimages as $newimage)
@@ -86,9 +95,16 @@
                                 <img src="{{ asset('storage/' . $newimage->foto) }}" class="card-img-top" alt="Image">
                                 {{-- Card Buttons --}}
                                 <div class="card-body text-center">
-                                    <a href="{{ route('image.like', $newimage->id) }}" class="btn btn-like"><i
-                                            class="fa fa-heart"
-                                            style="{{ Auth::check() && $newimage->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                                    @if (Auth::check())
+                                        <a href="{{ route('image.like', $newimage->id) }}" class="btn btn-like"><i
+                                                class="fa fa-heart"
+                                                style="{{ Auth::check() && $newimage->likes->pluck('UserId')->contains(Auth::user()->id) ? 'color: blue' : '' }}"></i></a>
+                                    @else
+                                        <a data-bs-toggle="modal" data-bs-target="#like-{{ $newimage->id }}"
+                                            class="btn btn-like">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    @endif
                                     <a href="{{ route('image.download', $newimage->id) }}" class="btn btn-download"><i
                                             class="fa fa-download"></i></a>
                                     <button data-bs-toggle="modal" data-bs-target="#share-{{ $newimage->id }}"
@@ -97,6 +113,23 @@
                             </div>
                         </a>
                     </div>
+                    {{-- MODAL Like Belom Login CUY --}}
+                    <div class="modal fade" id="like-{{ $newimage->id }}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered"> <!-- Kelas modal-dialog-centered ditambahkan -->
+                            <div class="modal-content brumodal">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">You Need To Login First</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Please log in to like this image.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     {{-- MODAL SHARE CUY --}}
                     <div class="modal fade" id="share-{{ $newimage->id }}" data-bs-backdrop="static"
@@ -112,7 +145,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Copy Link To Share</p>
-                                    <input type="text" class="bruform-input my-2" id="copyLinkInput-{{ $newimage->id }}"
+                                    <input type="text" class="bruform-input my-2"
+                                        id="copyLinkInput-{{ $newimage->id }}"
                                         value="{{ url('image/show/' . $newimage->id) }}" readonly />
                                     <button type="button" class="bruform-submit mt-2"
                                         onclick="copyToClipboard({{ $newimage->id }})">Salin
@@ -123,16 +157,6 @@
                     </div>
                 @endforeach
 
-            </div>
-
-            {{-- Pagination (Dummy) --}}
-            <div class="row justify-content-center mt-5">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
             </div>
         @endif
 

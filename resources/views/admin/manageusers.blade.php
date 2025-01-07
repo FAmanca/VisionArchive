@@ -12,6 +12,7 @@
                 <th class="bg-green">Username</th>
                 <th class="bg-yellow">Email</th>
                 <th class="bg-violet">Created at</th>
+                <th class="bg-violet">Role</th>
                 <th class="bg-red">Action</th>
             </thead>
             <tbody>
@@ -20,6 +21,19 @@
                         <td><b>{{ $user->username }}</b></td>
                         <td><b>{{ $user->email }}</b></td>
                         <td><b>{{ $user->created_at }}</b></td>
+                        <td>
+                            <b>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-role" type="checkbox"
+                                        id="userRole{{ $user->id }}" data-id="{{ $user->id }}"
+                                        {{ $user->role == 'admin' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="userRole{{ $user->id }}">
+                                        {{ $user->role == 'admin' ? 'Admin' : 'User' }}
+                                    </label>
+                                </div>
+                            </b>
+                        </td>
+
                         <td>
                             @if ($user->banned)
                                 <p>Banned until {{ $user->banned->BannedUntil }}</p>
@@ -70,4 +84,28 @@
             {{ $users->links('pagination::bootstrap-5') }}
         </p>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).on('change', '.toggle-role', function() {
+            let userId = $(this).data('id');
+            let isAdmin = $(this).is(':checked') ? 'admin' : 'user';
+
+            $.ajax({
+                url: "{{ route('admin.updaterole') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: userId,
+                    role: isAdmin
+                },
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(xhr) {
+                    alert('Gagal memperbarui peran pengguna!');
+                }
+            });
+        });
+    </script>
 @endsection

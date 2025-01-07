@@ -16,8 +16,6 @@
             <p>Sorry, your account has been banned and cannot access the system until {{ $user->banned->BannedUntil }}.
             </p>
             <i>Reason for Ban: {{ $user->banned->BanReason }}</i>
-            <hr>
-            <p class="mb-0">Please contact the administrator if you believe this is a mistake.</p>
         </div>
     </div>
 

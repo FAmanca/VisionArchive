@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Comment;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class DashboardController extends Controller
 {
@@ -15,12 +16,14 @@ class DashboardController extends Controller
         $totalImages = Image::count();
         $totalComments = Comment::count();
         $totalReports = Report::count();
+
         $users = User::whereDate('created_at', today())->get();
+        
         return view('admin.dashboard', [
             'totalUsers' => $totalUsers,
             'totalImages' => $totalImages,
             'totalComments' => $totalComments,
             'totalReports' => $totalReports,
-        ]);
+        ], compact('usersChart'));
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function index() {
-        $users = User::paginate(5);
+        $users = User::where('id', '!=', auth()->id())->paginate(5);
         return view('admin.manageusers', [
             'users' => $users,
             'search' => null
@@ -26,5 +26,10 @@ class UsersController extends Controller
             'users' => $users->paginate(5),
             'search' => $search
         ]);
+    }
+
+    public function updaterole(Request $request) {
+        User::where('id', $request->id)->update(['role' => $request->role]);
+        return response()->json(['message' => 'Peran pengguna berhasil diperbarui!']);
     }
 }

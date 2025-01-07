@@ -112,5 +112,20 @@ class AuthController extends Controller
     }
     // GOOGLE AUTH
 
-    public function updatePassword(Request $request) {}
+    public function updatePassword(Request $request) {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->withErrors(['old_password' => 'Password lama tidak sesuai']);
+        }
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back();
+    }
 }

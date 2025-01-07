@@ -121,13 +121,15 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <h6>Are you sure you want to delete the album?</h6>
-                                                <h6 style="color: red"><i>All images related to the album will be deleted.</i></h6>
+                                                <h6 style="color: red"><i>All images related to the album will be
+                                                        deleted.</i></h6>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="bruform-submit" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="bruform-submit"
+                                                data-bs-dismiss="modal">Cancel</button>
                                             <button type="submit" class="bruform-submit danger">Delete Album</button>
                                         </div>
-                                            </form>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -155,29 +157,27 @@
                                         <div class="modal-footer">
                                             <button type="submit" class="bruform-submit">Edit Album</button>
                                         </div>
-                                            </form>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             {{-- Modal --}}
-
                         @endforeach
                     </tbody>
                 </table>
             @endif
         </div>
 
-        <div class="neoprofile-settings mt-4">
-            <h3>Settings</h3>
-            <ul>
-                @if (Auth::user()->google_id == null)
+        @if (Auth::user()->google_id == null)
+            <div class="neoprofile-settings mt-4">
+                <h3>Settings</h3>
+                <ul>
                     <li><a data-bs-toggle="modal" data-bs-target="#changepass" href=""
                             class="neoprofile-link">Change
                             Password</a></li>
-                @endif
-                <li><a href="/delete-account" class="neoprofile-link">Delete Account</a></li>
-            </ul>
-        </div>
+                </ul>
+            </div>
+        @endif
     </div>
 
     <!-- Modal Edit Profile -->
@@ -217,26 +217,28 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile.changepass') }}" method="POST">
                         @csrf
-                        <label class="">Old Password</label>
-                        <input type="text" class="bruform-input my-2" placeholder="Enter Old Password..."
-                            name="oldpass" />
-                        <label class="">New Password</label>
-                        <input type="text" class="bruform-input my-2" placeholder="Enter New Password..."
-                            name="newpass" />
-                        <label class="">Confirm Password</label>
-                        <input type="text" class="bruform-input my-2" placeholder="Confirm Password..."
-                            name="newpass_confirmation" />
+                        <label for="old_password">Password Lama</label>
+                        <input type="password" class="bruform-input my-2" placeholder="Masukkan Password Lama..."
+                            name="old_password" id="old_password" required />
+
+                        <label for="new_password">Password Baru</label>
+                        <input type="password" class="bruform-input my-2" placeholder="Masukkan Password Baru..."
+                            name="new_password" id="new_password" required />
+
+                        <label for="confirm_password">Konfirmasi Password Baru</label>
+                        <input type="password" class="bruform-input my-2" placeholder="Konfirmasi Password Baru..."
+                            name="new_password_confirmation" id="confirm_password" required />
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="bruform-submit">Change Password</button>
                 </div>
                 </form>
+
+                </form>
             </div>
         </div>
     </div>
     {{-- Modal --}}
-
-
 @endsection

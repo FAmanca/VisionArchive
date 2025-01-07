@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +46,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['checkadmi
     Route::get('/reports', [ReportController::class, 'index'])->name('report');
     Route::post('/ban/{user}', [BannedController::class, 'banned'])->name('banuser');
     Route::delete('/deleteimage/{image}', [ReportController::class, 'deleteimage'])->name('deleteimage');
+    Route::post('/update-user-role', [UsersController::class, 'updateRole'])->name('updaterole');
 });
 
 Route::group(['prefix' => 'profile', 'middleware' => ['checklogin'], 'as' => 'profile.'], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::post('/update', [AuthController::class, 'update'])->name('update');
+    Route::post('/changepass', [AuthController::class, 'updatePassword'])->name('changepass');
 });
 
 

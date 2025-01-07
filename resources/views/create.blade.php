@@ -34,12 +34,6 @@
             <div class="bruform-input-group">
                 <select class="bruform-select" name="albumID">
                     <option selected {{ $data == null ? 'selected' : '' }} disabled>Select Albums</option>
-                    <option value="" disabled class="text-center">Vision Archive Signature Albums</option>
-                    <option value="1">BELOM JALAN YAK</option>
-                    <option value="" disabled>
-                        <hr>
-                    </option>
-                    <option value="" disabled class="text-center">User Albums</option>
                     @foreach ($albums as $album)
                         <option value="{{ $album->id }}"
                             {{ $data == null ? (old('albumID') == $album->id ? 'selected' : '') : ($album->id == $data->AlbumID ? 'selected' : '') }}>
